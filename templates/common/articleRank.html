@@ -1,0 +1,28 @@
+<div class="col-xs-12" style="margin-top: 60px">
+    <div class="bs-example" data-example-id="condensed-table">
+    <table class="table table-condensed">
+      <thead>
+        <p class="text-center lead" style="margin-bottom: 0px;font-size: 26px">文章排行</p>
+        <h5 class="text-center" style="margin-top: 0px; color: grey">TOP ARTICLE</h5>
+      </thead>
+      <tbody>
+        {% for item in ranklist %}
+            <tr>
+              <th scope="row">
+                  {% if item.rankid == 1 %}
+                      <h4 style="background-color: red;color: white;width: 20px;text-align: center">{{ item.rankid }}</h4>
+                  {% elif item.rankid == 2 or item.rankid == 3 %}
+                      <h4 style="color: red;">{{ item.rankid }}</h4>
+                  {% else %}
+                      <h4 style="color: gray;">{{ item.rankid }}</h4>
+                  {% endif %}
+              </th>
+              <td>
+                  <h4><a href="/cmsindex/articleContent?articleId={{ item.id }}">{{ item.title }}</a></h4>
+              </td>
+            </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>

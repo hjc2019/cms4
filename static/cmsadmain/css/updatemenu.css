@@ -1,0 +1,54 @@
+/*头部底边距*/
+.navbar{
+    margin-bottom: 0;
+}
+
+/*中心内容右侧，小标题*/
+.title{
+    border: 1px solid #ffffff;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    height: 30px;
+    line-height: 30px;
+    margin-top: 10px;
+}
+.title .icon{
+    margin-left: 15px;
+}
+
+/*中心内容右侧，表单*/
+.copy{
+    margin-top: 20px;
+}
+.menuname input{
+    width: 50%;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+/*模态框的内容*/
+.modal-body{
+    text-align: center;
+}
+
+/*缩略图*/
+.thumb{
+    border: 1px solid #EEEEEE;
+    position: relative;
+    width: 70px;
+    height: 70px;
+}
+.thumb input{
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+}
+.thumb img{
+    width:70px;
+    height:70px;
+}

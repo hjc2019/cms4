@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户管理</title>
+</head>
+    <link rel="stylesheet" type="text/css" href="../../../static/common/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/common/css/admainheader.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/cmsadmain/css/home.css"/>
+<body>
+{% include 'common/admainheader.html' %}
+<div class="col-sm-10 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="title">
+                            <span class="glyphicon glyphicon-tag icon"></span>
+                            <span><a href="/cmsadmain/user/">用户管理</a> / 用户列表</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-primary" id="adduser"><span class="glyphicon glyphicon-plus"></span>添加用户</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>id</th>
+                              <th>用户名</th>
+                              <th>简介</th>
+                              <th>头像</th>
+                              <th>操作</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              {% for item in userlist %}
+                                    <tr>
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.username }}</td>
+                                        {% if item.resume is None %}
+                                            <td style="color: red">暂无简介</td>
+                                        {% else %}
+                                            <td>{{ item.resume | safe }}</td>
+                                        {% endif %}
+                                        <td>
+                                            {% if item.headimg == None %}
+                                                <p style="color: red">无</p>
+                                            {% else %}
+                                                <img src="../../static/headImg/{{ item.headimg }}" style="width:40px; height:40px;"/>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <a href="/cmsadmain/reuser/?editIndex={{ item.id }}"><button class="btn btn-default glyphicon glyphicon-edit btn-primary"></button></a>
+                                          <button class="btn btn-default glyphicon glyphicon-trash btn-danger delete" data-name="{{ item.id }}"></button>
+                                        </td>
+                                    </tr>
+                              {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <div/>
+    <div/>
+</body>
+<script type="text/javascript" src="../../../static/common/js/jquery.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/bootstrap.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/admainheader.js"></script>
+</html>
+<script>
+    init();
+    function init(){
+        $("#adduser").click(addUser);
+        $(".delete").click(deleteUser);
+    }
+    function addUser(){
+        location.href="/cmsadmain/adduser"
+    }
+    function deleteUser() {
+        var deleteIndex=$(this).data("name");
+        $.ajax({
+            url: "/cmsadmain/deleteUser/",
+            type: "get",
+            dataType:"json",
+            data:{
+                "deleteIndex":deleteIndex
+            },
+            success: function (data) {
+                alert(data["msg"]);
+                //重新加载该页面
+                window.location.reload()
+            }
+        })
+    }
+</script>

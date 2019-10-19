@@ -1,0 +1,39 @@
+<table class="table table-condensed" style="margin-top: 30px">
+  <tbody>
+    {% for item in newslist %}
+        <tr>
+          <td class="col-xs-3">
+              <img {% if item.thumb != None %}src="/static/newsimg/{{ item.thumb }}" {% else %}src="/static/newsimg/start.jpg"{% endif %}  class="img-thumbnail" style="width: 200px; height: 140px; margin-left: 35px"/>
+          </td>
+          <td class="col-xs-9">
+              <h4><a href="/cmsindex/articleContent/?articleId={{ item.id }}" style="color: {{ item.titlt_font_color }}">{{ item.title }}</a></h4>
+              <div style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;max-width: 120px">{{ item.content | safe }}</div>
+              <h5 style="display: inline-block;margin-left: 15px">{{ item.time }}</h5>
+              <h5 style="display: inline-block;margin-left: 15px;color:#8CB8E4">阅读（{{ item.num }}）</h5>
+          </td>
+        </tr>
+    {% endfor %}
+  </tbody>
+</table>
+<nav aria-label="Page navigation" style="margin-bottom: 50px;text-align: center">
+  <ul class="pagination">
+    {#disabled是当你的按钮不满足的时候不可以点击了#}
+    {% if current_page == 1 %}
+        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+    {% else %}
+        <li><a href="/cmsindex/index/?page={{ current_page | add:'-1' }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+    {% endif %}
+    {% for i in pageRange %}
+         {% if i <= pagecount %}
+            {% if current_page == i %}
+                <li class="active"><a href="/cmsindex/index/?page={{ i }}">{{ i }}</a></li>
+            {% else %}
+                <li><a href="/cmsindex/index/?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+         {% endif %}
+    {% endfor %}
+    <li {% if current_page == pagecount %} class="disabled" {% endif %}>
+      <a href="/cmsindex/index/?page={{ current_page | add:'1' }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a>
+    </li>
+  </ul>
+</nav>

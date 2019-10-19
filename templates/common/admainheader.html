@@ -1,0 +1,48 @@
+        <!--容器-->
+		<div class="container-fluid">
+			<!--第一行-->
+			<div class="row">
+				<div class="col-md-12">
+					<!--头部导航-->
+					<nav class="navbar navbar-default navbar-inverse">
+						<div class="container-fluid">
+					        <!-- Brand and toggle get grouped for better mobile display -->
+					        <div class="navbar-header ">
+					          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					            <span class="sr-only">Toggle navigation</span>
+					            <span class="icon-bar"></span>
+					            <span class="icon-bar"></span>
+					            <span class="icon-bar"></span>
+					          </button>
+					          <a class="navbar-brand" href="#">路赞后台管理系统</a>
+					        </div>
+
+					        <!-- Collect the nav links, forms, and other content for toggling -->
+					        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					          <ul class="nav navbar-nav navbar-right navbar-form currentuser">
+					            <div class="form-group">
+					                <span class="glyphicon glyphicon-user"></span>
+                                    <span>欢迎 <b></b></span>
+					            </div>
+					            <button class="btn-sm btn-danger" onclick="exit()"><span class="glyphicon glyphicon-share"></span>退出</button>
+					          </ul>
+					        </div>
+					    </div>
+				    </nav>
+				</div>
+			</div>
+            {# 第二行#}
+            <div class="row container-fluid">
+				<!--侧边栏-->
+				<div class="col-sm-2 hidden-xs backcolor">
+					<ul class="nav nav-pills nav-stacked nav-pills-stacked-example menu">
+				      <li role="presentation"><a href="/cmsadmain/home/"><span class="glyphicon glyphicon-home"></span>首页</a></li>
+				      <li role="presentation"><a href="/cmsadmain/menus/"><span class="glyphicon glyphicon-th-list"></span>菜单管理</a></li>
+				      <li role="presentation"><a href="/cmsadmain/article/"><span class="glyphicon glyphicon-book"></span>文章管理</a></li>
+				      <li role="presentation"><a href="/cmsadmain/user/"><span class="glyphicon glyphicon-user"></span>用户管理</a></li>
+				      <li role="presentation"><a href="/cmsadmain/positions/"><span class="glyphicon glyphicon-bookmark"></span>推荐位管理</a></li>
+				      <li role="presentation"><a href="/cmsadmain/positioncontent/"><span class="glyphicon glyphicon-tasks"></span>推荐位内容管理</a></li>
+                      <li role="presentation"><a href="/cmsadmain/clearImg/"><span class="glyphicon glyphicon-cog"></span>其他</a></li>
+				    </ul>
+				</div>
+

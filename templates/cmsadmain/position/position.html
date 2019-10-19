@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>推荐位管理</title>
+     <link rel="stylesheet" type="text/css" href="../../../static/common/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/common/css/admainheader.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/cmsadmain/css/article.css"/>
+</head>
+<body>
+{% include "common/admainheader.html" %}
+            <div class="col-sm-10 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="title">
+                            <span class="glyphicon glyphicon-tag icon"></span>
+                            <span>推荐位管理 / 推荐位列表</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><span class="glyphicon glyphicon-plus"></span>添加推荐位</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-8">
+                        <table class="table table-bordered">
+                          <thead>
+                            <tr>
+                              <th>id</th>
+                              <th>推荐位名称</th>
+                              <th>操作</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {% for item in list %}
+                                <tr>
+                                  <td>{{ item.id }}</td>
+                                  <td>{{ item.name }}</td>
+                                  <td>
+                                      <button type="button" class="btn btn-primary" onclick="updateposition({{ item.id }})" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo"><span class="glyphicon glyphicon-edit"></span></button>
+                                      <button type="button" class="btn btn-danger" onclick="del({{ item.id }})" data-toggle="modal" data-target="#gridSystemModal"><span class="glyphicon glyphicon-trash"></span></button>
+                                  </td>
+                                </tr>
+                          {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{#删除的模态框#}
+<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" style="display: none;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="gridModalLabel">删除推荐位</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">请再次确认，是否删除编号为<span></span>的推荐位？</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" onclick="delposition()">继续删除</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{#添加推荐位的模态框#}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" style="display: none;">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">添加推荐位</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group" style="text-align: left">
+            <label for="recipient-name" class="control-label">推荐位名称:</label>
+            <input type="text" class="form-control" id="recipient-name" placeholder="请输入推荐位名称">
+          </div>
+          <div class="form-group hint" style="text-align: left;display: none;color: red">
+            <p>内容不能为空!</p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary save" onclick="addposition()" >保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+ <script type="text/javascript" src="../../../static/common/js/jquery.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/bootstrap.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/admainheader.js"></script>
+<script type="text/javascript" src="../../../static/cmsadmain/js/position.js"></script>
+</html>

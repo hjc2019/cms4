@@ -1,0 +1,82 @@
+/*头部底边距*/
+.navbar{
+    margin-bottom: 0;
+}
+
+/*中心内容右侧，小标题*/
+.title{
+    border: 1px solid #ffffff;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+    height: 30px;
+    line-height: 30px;
+}
+.title .icon{
+    margin-left: 15px;
+}
+
+/*右侧内容上下模块边距*/
+.space{
+    margin-top: 30px;
+}
+
+/*各项数据内容统计数*/
+.count{
+    border: 1px solid #6EA5DD;
+    border-radius: 5px;
+    margin-left: 35px;
+}
+.count .up{
+    height: 60px;
+    background-color: #6EA5DD;
+    color: #ffffff;
+}
+.count .up .inco1{
+    margin-top: 10px;
+    font-size: 40px;
+}
+.count .up .context{
+    margin-top: 10px;
+    text-align: center;
+}
+.count .down{
+    color: #6EA5DD;
+    height: 25px;
+    line-height: 25px;
+}
+.count .down .inco2{
+    text-align: right;
+}
+
+/*文章阅读数*/
+.article{
+    border: 1px solid #5BBA5B;
+}
+.article .up{
+    background-color: #5BBA5B;
+}
+.article .down{
+    color: #5BBA5B;
+}
+
+/*文章最大阅读数*/
+.reading{
+    border: 1px solid #F7AE4B;
+}
+.reading .up{
+    background-color: #F7AE4B;
+}
+.reading .down{
+    color: #F7AE4B;
+}
+
+/*推荐位数*/
+.position{
+    border: 1px solid #DE524B;
+}
+.position .up{
+    background-color: #DE524B;
+}
+.position .down{
+    color: #DE524B;
+}

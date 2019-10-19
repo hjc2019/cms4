@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>后台首页</title>
+    <link rel="stylesheet" type="text/css" href="../../../static/common/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/common/css/admainheader.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/cmsadmain/css/home.css"/>
+</head>
+<body>
+     {% include "common/admainheader.html" %}
+				<div class="col-sm-10 col-xs-12">
+					<div class="row">
+						<div class="col-xs-12">
+							<h3>欢迎使用路赞后台管理信息系统</h3>
+							<hr />
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-xs-12">
+							<div class="title">
+                                <span class="glyphicon glyphicon-tag icon"></span>
+                                <span>平台整理指标</span>
+                            </div>
+						</div>
+					</div>
+					<div class="row space">
+						<div class="col-xs-5 count">
+                            <div class="row up">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-8 inco1">
+                                            <p class="glyphicon glyphicon-cloud"></p>
+                                        </div>
+                                        <div class="col-xs-4 context">
+                                            <p>今日登陆管理员数</p>
+                                            <p>{{ todayuser }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row down">
+                                <div class="col-xs-12">
+                                     <div class="row">
+                                        <div class="col-xs-6 find">
+                                            <p>查看</p>
+                                        </div>
+                                        <div class="col-xs-6 inco2">
+                                            <p class="glyphicon glyphicon-circle-arrow-right"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+						<div class="col-xs-5 count article">
+                            <div class="row up">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-8 inco1">
+                                            <p class="glyphicon glyphicon-th-list"></p>
+                                        </div>
+                                        <div class="col-xs-4 context">
+                                            <p>文章数量</p>
+                                            <p>{{ newscount }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row down">
+                                <div class="col-xs-12">
+                                     <div class="row">
+                                        <div class="col-xs-6 find">
+                                            <p>查看</p>
+                                        </div>
+                                        <div class="col-xs-6 inco2">
+                                            <p class="glyphicon glyphicon-circle-arrow-right"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+					<div class="row space">
+						<div class="col-xs-5 count reading">
+                            <div class="row up">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-8 inco1">
+                                            <p class="glyphicon glyphicon-stats"></p>
+                                        </div>
+                                        <div class="col-xs-4 context">
+                                            <p>文章最大阅读数</p>
+                                            <p>{{ maxread }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row down">
+                                <div class="col-xs-12">
+                                     <div class="row">
+                                        <div class="col-xs-6 find">
+                                            <p>查看</p>
+                                        </div>
+                                        <div class="col-xs-6 inco2">
+                                            <p class="glyphicon glyphicon-circle-arrow-right"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+						<div class="col-xs-5 count position">
+                            <div class="row up">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-8 inco1">
+                                            <p class="glyphicon glyphicon-filter"></p>
+                                        </div>
+                                        <div class="col-xs-4 context">
+                                            <p>推荐位数</p>
+                                            <p>{{ positioncount }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row down">
+                                <div class="col-xs-12">
+                                     <div class="row">
+                                        <div class="col-xs-6 find">
+                                            <p>查看</p>
+                                        </div>
+                                        <div class="col-xs-6 inco2">
+                                            <p class="glyphicon glyphicon-circle-arrow-right"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</body>
+    <script type="text/javascript" src="../../../static/common/js/jquery.js" ></script>
+    <script type="text/javascript" src="../../../static/common/js/bootstrap.js" ></script>
+    <script type="text/javascript" src="../../../static/common/js/admainheader.js"></script>
+</html>

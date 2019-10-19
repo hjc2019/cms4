@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+ <link rel="stylesheet" type="text/css" href="../../../static/common/css/bootstrap.css"/>
+ <link rel="stylesheet" type="text/css" href="../../../static/common/css/admainheader.css"/>
+ <link rel="stylesheet" type="text/css" href="../../../static/cmsadmain/css/home.css"/>
+<style>
+    .thumb{
+        border: 1px solid #EEEEEE;
+        position: relative;
+        width: 100px;
+        height: 100px;
+    }
+    .thumb input{
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        z-index: 10;
+        opacity: 0;
+    }
+    .thumb img{
+        width:100px;
+        height:100px;
+    }
+</style>
+<body>
+{% include 'common/admainheader.html' %}
+<div class="bs-example col-sm-10 col-xs-12" data-example-id="basic-forms">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="title">
+                <span class="glyphicon glyphicon-tag icon"></span>
+                <span><a href="/cmsadmain/user/">用户管理</a> / <a href="/cmsadmain/user/">用户列表</a> / 添加用户</span>
+            </div>
+        </div>
+    </div>
+    <form action="/cmsadmain/adduserHandler/" method="post" enctype="multipart/form-data" class="form-horizontal" style="margin-left: 150px;margin-top: 50px">
+      {% csrf_token %}
+        <div class="form-group">
+        <label for="inputEmail3" class="col-sm-2 control-label">用户名：</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" name="username" placeholder="用户名">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-2 control-label">密码：</label>
+        <div class="col-sm-6">
+          <input type="password" class="form-control" name="pwd" placeholder="密码">
+        </div>
+      </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">邮箱：</label>
+            <div class="col-sm-6">
+              <input type="email" class="form-control" name="email" placeholder="邮箱">
+            </div>
+        </div>
+        <div class="form-group">
+             <label for="exampleInputFile" class="col-sm-2 control-label">上传头像</label>
+             <div class="thumb" style="display: inline-block;margin-left: 15px">
+                <input type="file" name="heading" id="headImg">
+                <img class="preview" id="change" src="/static/newsimg/img.png">
+             </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">个人简介：</label>
+            <div class="col-sm-6">
+              {{ form.media }}
+                {{ form }}
+            </div>
+        </div>
+        <button type="button" class="btn btn-default" style="margin-left: 200px;"><a href="/cmsadmain/user/">返回</a></button>
+        <button type="submit" class="btn btn-primary"  data-toggle="modal" data-target=".bs-example-modal-sm" style="margin-left: 10px;">提交</button>
+    </form>
+  </div>
+</body>
+<script type="text/javascript" src="../../../static/common/js/jquery.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/bootstrap.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/admainheader.js"></script>
+<script type="text/javascript" src="../../../static/common/js/jquery.validate-1.13.1.js"></script>
+<script type="text/javascript" src="../../../static/common/js/jquery.form.js"></script>
+<script>
+    init();
+    function init() {
+        $("#headImg").change(changeImg);
+    }
+    function changeImg() {
+        var imgFile=this.files.item(0);
+        var _url=window.URL.createObjectURL(imgFile);
+        var str = imgFile.name.split('.');
+        var filename = str[str.length-1];
+        //定义允许上传的文件格式
+        var list = ["jpg","jpeg","png"];
+        if (list.indexOf(filename) != -1){
+            $("#change").attr("src",_url);
+        } else{
+            $("#change").attr("src","/static/newsimg/img.png");
+            alert("上传的文件格式不正确!");
+            return;
+        }
+    }
+    var validate=$("form").validate({
+        submitHandler:function(form) {
+        $("form").ajaxSubmit(function (message) {
+            var data=JSON.parse(message);
+            console.log(data);
+            if (data["code"]==0){
+                alert(data["msg"]);
+                location.href="/cmsadmain/user"
+            }
+            else {
+                alert(data["msg"]);
+             }
+
+        })
+     }
+    });
+</script>
+</html>

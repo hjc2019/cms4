@@ -1,0 +1,41 @@
+{#主页头部#}
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-9" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">路赞新闻报社</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
+          <ul class="nav navbar-nav menu">
+              <li class="navlist active"><a href="/cmsindex/index/?page=1">首页</a></li>
+              {% for item in nav %}
+                  <li class="navlist"><a href="/cmsindex/articleClassifiedList/?navid={{ item.id  }}">{{ item.menuname }}</a></li>
+              {% endfor %}
+          </ul>
+        </div>
+      </div>
+</nav>
+<script src="/static/common/js/jquery.js"></script>
+<script>
+    init();
+    function init() {
+         //获取当前网址url路径名
+        var urlname = location.href;
+        //先删除所有a标签的选中状态
+        $(".menu a").parent().removeClass("active");
+        //得到每个菜单的a标签的href属性值
+       $(".menu a").each(function () {
+           var href = $(this).attr("href");
+           if (urlname.indexOf(href) != -1){
+                $(this).parent().addClass("active")
+            }
+        })
+    }
+</script>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>菜单管理</title>
+    <link rel="stylesheet" type="text/css" href="../../../static/common/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/common/css/admainheader.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/cmsadmain/css/menu.css"/>
+</head>
+<body>
+{% include "common/admainheader.html" %}
+            <div class="col-sm-10 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="title">
+                            <span class="glyphicon glyphicon-tag icon"></span>
+                            <span><a href="/cmsadmain/menus/">菜单管理</a> / 菜单列表</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-primary" onclick="addmenu()"><span class="glyphicon glyphicon-plus"></span>添加菜单</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>id</td>
+                                    <td>菜单名</td>
+                                    <td>菜单类型</td>
+                                    <td>菜单状态</td>
+                                    <td>操作</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in menulist %}
+                                    <tr index="{{ item.id }}">
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.menuname }}</td>
+                                        <td>{{ item.menutype }}</td>
+                                        <td>{{ item.menustate }}</td>
+                                        <td>
+                                            <button type='button' class='btn btn-primary' onclick='updatamenu({{ item.id }})'><span class='glyphicon glyphicon-edit'></span></button>
+                                            <button type='button' class='btn btn-danger' data-toggle='modal' data-target='#gridSystemModal' onclick='del({{ item.id }})'><span class='glyphicon glyphicon-trash'></span></button>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 col-xs-offset-4">
+                       <nav aria-label="Page navigation">
+                         <ul class="pagination">
+                            {#disabled是当你的按钮不满足的时候不可以点击了#}
+                            {% if current_page == 1 %}
+                                <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                            {% else %}
+                                <li><a href="/cmsadmain/menus/?p={{ current_page | add:'-1' }}" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+                            {% endif %}
+                            {% for i in pageRange %}
+                                 {% if i <= pagecount %}
+                                    {% if current_page == i %}
+                                        <li class="active"><a href="/cmsadmain/menus/?p={{ i }}">{{ i }}</a></li>
+                                    {% else %}
+                                        <li><a href="/cmsadmain/menus/?p={{ i }}">{{ i }}</a></li>
+                                    {% endif %}
+                                 {% endif %}
+                            {% endfor %}
+                            {% if current_page == pagecount %}
+                                <li  class="disabled"><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                            {% else %}
+                                <li><a href="/cmsadmain/menus/?p={{ current_page | add:'1' }}" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                            {% endif %}
+                          </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{#删除的模态框#}
+<div id="gridSystemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="gridModalLabel" style="display: none;">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="gridModalLabel">删除新闻</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-xs-6">请再次确认是否删除编号为<span></span>菜单项？</div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+          <button type="button" class="btn btn-primary" onclick="save()">继续删除</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+</body>
+ <script type="text/javascript" src="../../../static/common/js/jquery.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/bootstrap.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/admainheader.js"></script>
+<script type="text/javascript" src="../../../static/cmsadmain/js/menu.js"></script>
+</html>

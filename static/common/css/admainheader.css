@@ -1,0 +1,18 @@
+/*头部导航，当前登录用户*/
+.currentuser{
+    color: white;
+}
+.currentuser .form-group{
+    margin-right: 10px;
+}
+.navbar{
+    border-radius: 0;
+}
+/*中心内容左侧导航栏*/
+.backcolor{
+    background-color: #222222;
+    color: white;
+}
+.backcolor span{
+    margin-right: 10px;
+}

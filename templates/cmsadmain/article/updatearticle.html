@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>添加文章</title>
+     <link rel="stylesheet" type="text/css" href="../../../static/common/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/common/css/admainheader.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/cmsadmain/css/addarticle.css"/>
+</head>
+<body>
+{% include "common/admainheader.html" %}
+            <div class="col-sm-10 col-xs-12">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="title">
+                            <span class="glyphicon glyphicon-tag icon"></span>
+                            <span><a href="/cmsadmain/article/">文章管理</a> / <a href="/cmsadmain/article/">文章列表</a> / 编辑文章</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <form method="post" action="/cmsadmain/updatearticleHandler/" enctype="multipart/form-data">
+                            <div class="row newstitle distant">
+                                <div class="col-xs-1 col-xs-offset-1">
+                                   <div class="copy">
+                                        <labal>标题</labal>
+                                   </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <input type="text" placeholder="请输入标题" name="title" value="{{ news.title }}"/>
+                                    <input type="hidden" name="newsid" class="newsid">
+                                </div>
+                            </div>
+                            <div class="row distant">
+                                <div class="col-xs-1 col-xs-offset-1">
+                                    <div class="copy">
+                                        <labal>标题颜色</labal>
+                                    </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <div class="classify titlecolor">
+                                        <select name="color">
+                                            <option value="" disabled selected hidden>选择颜色</option>
+                                            <option value="#000000" {% if news.titlecolor == "#000000"%} selected {% endif %}>黑色</option>
+                                            <option value="#ff0000" {% if news.titlecolor == '#ff0000'%} selected {% endif %}>红色</option>
+                                            <option value="#00ff00" {% if news.titlecolor == "#00ff00"%} selected {% endif %}>绿色</option>
+                                            <option value="#00b7ee" {% if news.titlecolor == "#00b7ee"%} selected {% endif %}>蓝色</option>
+                                        </select>
+                                        <button class="btn-sm btn-primary" type="button" onclick="look()"><span class="glyphicon glyphicon-eye-open"></span>预览</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row distant">
+                                <div class="col-xs-1 col-xs-offset-1">
+                                    <div class="copy">
+                                        <labal>所属栏目</labal>
+                                    </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <div class="classify menu">
+                                        <select name="menu" onselect="{{ news.catid }}">
+                                            <option value="" disabled selected hidden>选择所属栏目</option>
+                                            {% for item in menulist %}
+                                                <option value="{{ item.id }}" {% if news.catid == item.id %} selected {% endif %}>{{ item.menuname }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row distant">
+                                <div class="col-xs-1 col-xs-offset-1">
+                                    <div class="copy">
+                                        <labal>缩略图</labal>
+                                    </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <div class="thumb">
+                                        <input type="file" name="newsimg">
+                                        {% if news.thumb is not None %}
+                                            <input type="hidden" name="preImg" value="{{ news.thumb }}">
+                                            <img class="preview" src="/static/newsimg/{{ news.thumb }}">
+                                        {% else %}
+                                            <img class="preview" src="/static/newsimg/img.png"}>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row distant">
+                                <div class="col-xs-1 col-xs-offset-1">
+                                    <div class="copy">
+                                        <labal>内容</labal>
+                                    </div>
+                                </div>
+                                <div class="col-xs-10">
+                                    <div>
+                                        {{ form.media }}
+                                        {{ form }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-2 col-xs-offset-8">
+                                    <input type="button" class="btn-sm btn-default" onclick="back()" value="返回">
+                                    <input type="submit" class="btn-sm btn-primary" value="提交">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+ <script type="text/javascript" src="../../../static/common/js/jquery.js" ></script>
+ <script type="text/javascript" src="../../../static/common/js/jquery.form.js" ></script>
+ <script type="text/javascript" src="../../../static/common/js/jquery.validate-1.13.1.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/bootstrap.js" ></script>
+<script type="text/javascript" src="../../../static/common/js/admainheader.js"></script>
+<script type="text/javascript" src="../../../static/cmsadmain/js/updatearticle.js"></script>
+<script type="text/javascript">
+    init();
+    function init() {
+         //给富文本框导入内容
+        document.getElementById("id_content").value = '{{ news.content | safe }}';
+    }
+</script>
+</html>
